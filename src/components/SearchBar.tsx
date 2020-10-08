@@ -1,12 +1,17 @@
 import React, {useRef} from 'react'
 
-const SearchBar: React.FC = (): JSX.Element => {
+interface SearchBarProps {
+  onAddedAddress: (address: string) => void
+}
+
+const SearchBar: React.FC<SearchBarProps> = (props): JSX.Element => {
 
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
-    console.log(inputRef.current!.value)
+    const enteredAddress = inputRef.current!.value
+    props.onAddedAddress(enteredAddress)
   } 
 
   return (
